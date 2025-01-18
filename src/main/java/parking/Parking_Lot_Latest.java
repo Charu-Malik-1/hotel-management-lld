@@ -255,7 +255,7 @@ class ParkingTicket {
         this.amount = rate.calculate(hours, vehicle.type);
     }
 
-    public void processPayment(Payment payment) {
+    public void setPaymentDetails(Payment payment) {
         this.payment = payment;
         this.exitTime = LocalDateTime.now();
     }
@@ -551,7 +551,7 @@ class ParkingAgent extends Account {
             ticket.calculateBill(parkingRate);
             if (payment.initiateTransaction())
             {
-                ticket.processPayment(payment);
+                ticket.setPaymentDetails(payment);
                 return true;
             }
         }
